@@ -1,0 +1,50 @@
+<% if @property.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@property.errors.count,"error") %> prohibited this <%= @property.name %> registration from being saved:</h2>
+    <ul>
+      <% @property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>物件登録</h1>
+
+<ul>
+<%= form_with(model: @property,local: true, url:properties_path) do |format| %>
+  <li><%= format.label :name %></li>
+  <li><%= format.text_field :name %></li>
+  <li><%= format.label :rent %></li>
+  <li><%= format.text_field :rent %>円</li>
+  <li><%= format.label :address %></li>
+  <li><%= format.text_field :address %></li>
+  <li><%= format.label :age %></li>
+  <li><%= format.text_field :age %>年</li>
+  <li><%= format.label :remark %></li>
+  <li><%= format.text_area :remark %></li>
+
+  <h4>最寄り駅1</h4>
+  <%= format.fields_for :stations do |station| %>
+    <li><%= station.label :route_name %></li>
+    <li><%= station.text_field :route_name %></li>
+    <li><%= station.label :station_name %></li>
+    <li><%= station.text_field :station_name %></li>
+    <li><%= station.label :minutes_on_foot %></li>
+    <li><%= station.text_field :minutes_on_foot %></li>
+  <% end %>
+
+  <h4>最寄り駅2</h4>
+  <%= format.fields_for :stations do |station| %>
+    <li><%= station.label :route_name %></li>
+    <li><%= station.text_field :route_name %></li>
+    <li><%= station.label :station_name %></li>
+    <li><%= station.text_field :station_name %></li>
+    <li><%= station.label :minutes_on_foot %></li>
+    <li><%= station.text_field :minutes_on_foot %></li>
+  <% end %>
+
+
+  <li><%= format.submit %></li>
+<% end %>
+</ul>
