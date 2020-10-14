@@ -1,0 +1,22 @@
+<br>
+<br>
+<ul>
+  <li>物件名：<%= @property.name %></li>
+  <li>賃料：<%= @property.rent %>円</li>
+  <li>住所：<%= @property.address %></li>
+  <li>築年数：<%= @property.age %>年</li>
+  <li>備考：<%= @property.remark %></li>
+</ul>
+
+<% count = 0 %>
+<% @property_and_station.each do |property_and_station| %>
+<h3>最寄り駅<%= count += 1 %></h3>
+<ul>
+  <li>路線名：<%= property_and_station.route_name %></li>
+  <li>駅名：<%= property_and_station.station_name %></li>
+  <li>徒歩分数：<%= property_and_station.minutes_on_foot %>分</li>
+</ul>
+<% end %>
+
+<%= link_to '編集', edit_property_path(@property.id) %>
+<%= link_to '戻る', properties_path %>

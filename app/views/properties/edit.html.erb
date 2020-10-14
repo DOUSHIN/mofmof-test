@@ -1,0 +1,32 @@
+<h1>物件編集</h1>
+<%= form_with(model: @property, local: true) do |format| %>
+<ul>
+  <li><%= format.label :name %></li>
+  <li><%= format.text_field :name %></li>
+  <li><%= format.label :rent %></li>
+  <li><%= format.text_field :rent %>円</li>
+  <li><%= format.label :address %></li>
+  <li><%= format.text_field :address %></li>
+  <li><%= format.label :age %></li>
+  <li><%= format.text_field :age %>年</li>
+  <li><%= format.label :remark %></li>
+  <li><%= format.text_area :remark %></li>
+</ul>
+
+  <% count = 0 %>
+  <%= format.fields_for :stations do |station| %>
+    <h4>最寄り駅<%= count += 1 %></h4>
+    <ul>
+      <li><%= station.label :route_name %></li>
+      <li><%= station.text_field :route_name %></li>
+      <li><%= station.label :station_name %></li>
+      <li><%= station.text_field :station_name %></li>
+      <li><%= station.label :minutes_on_foot %></li>
+      <li><%= station.text_field :minutes_on_foot %></li>
+      </ul>
+  <% end %>
+
+  <%= format.submit "更新する" %>
+<% end %>
+<%= link_to '詳細' %>
+<%= link_to '戻る', @property %>
